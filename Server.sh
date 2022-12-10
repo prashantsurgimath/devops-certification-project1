@@ -4,7 +4,5 @@ sudo yum update -y
 sudo amazon-linux-extras install docker
 sudo service docker start
 sudo usermod -a -G docker ec2-user
-exit
-sudo -i
 docker info
 sudo systemctl enable docker
