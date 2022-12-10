@@ -1,0 +1,6 @@
+---
+- hosts: Test_server
+  become: true
+  tasks:
+  - name: create a container
+    command: docker run -itd --name Project -p 8080:8080 haneef7/Project
