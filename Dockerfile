@@ -1,3 +1,3 @@
 FROM tomcat:9
 MAINTAINER shaik
-COPY target/*.war /usr/local/tomcat/webapps/*.war
+COPY target/addressbook.war /usr/local/tomcat/webapps/addressbook.war
