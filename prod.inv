@@ -1,0 +1,2 @@
+[Prod_server]
+172.31.0.32 ansible_user=ec2-user
