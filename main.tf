@@ -1,5 +1,4 @@
 provider "aws" {
-  region     = "ap-south-1"
 }
 #Create security group with firewall rules
 resource "aws_security_group" "terraform-sg-2022" {
