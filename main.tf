@@ -1,16 +1,7 @@
 provider "aws" {
-  region = var.aws_region
+  profile    = "default"
+  region     = "ap-south-1"
 }
-
-resource "aws_vpc" "main" {
-  cidr_block = "172.16.0.0/16"
-  instance_tenancy = "default"
-  tags = {
-    Name = "main"
-  }
-}
-
-
 #Create security group with firewall rules
 resource "aws_security_group" "terraform-sg-2022" {
   name        = var.security_group
