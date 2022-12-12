@@ -14,7 +14,7 @@ resource "aws_vpc" "main" {
 #Create security group with firewall rules
 resource "aws_security_group" "terraform-sg-2022" {
   name        = var.security_group
-  description = "security group for Terraform"
+  description = "security group for Terraform server"
 
   ingress {
     from_port   = 8080
