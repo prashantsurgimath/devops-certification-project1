@@ -13,15 +13,11 @@ variable "instance_type" {
     default     =  "t2.micro"
 }
 
-variable "security_group" {
-    description = "Name of security group"
-    default     = "Test-group"
-}
-
 variable "tag_name" {
     description = "Tag Name of for Ec2 instance"
     default     = "Test_server"
 }
+
 variable "ami_id" {
     description = "AMI for AWS-Linux Ec2 instance"
     default     = "ami-074dc0a6f6c764218"
