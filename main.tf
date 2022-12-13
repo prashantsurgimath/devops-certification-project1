@@ -1,7 +1,7 @@
 provider "aws" {
   region = var.aws_region
 }
-resource "aws_instance" "Test_server" {
+resource "aws_instance" "Test_Server" {
   ami           = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
