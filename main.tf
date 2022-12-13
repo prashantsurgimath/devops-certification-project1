@@ -5,7 +5,6 @@ resource "aws_instance" "Test_server" {
   ami           = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
-  vpc_security_group_ids = [aws_security_group.terraform-sg-2022.id]
   user_data = file("docker.sh")
   tags= {
     Name = var.tag_name
