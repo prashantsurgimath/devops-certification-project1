@@ -8,6 +8,6 @@ resource "aws_instance" "Test_Server" {
   user_data = file("docker.sh")
   tags= {
     Name = var.tag_name
-  }
+ }
 }
 
