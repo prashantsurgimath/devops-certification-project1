@@ -3,4 +3,4 @@
   become: true
   tasks:
   - name: create a container
-    command: docker run -itd --name project -p 8080:8080 haneef7/project
+    command: docker run -itd --name project -p 8080:8080 pkcsmath/project1
