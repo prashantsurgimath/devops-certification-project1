@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage ('GetCode from SCM'){
       steps{
-         git 'https://github.com/shaik-haneef001/devops-certification-project1.git'
+         git 'https://github.com/prashantsuragimath/devops-certification-project1.git'
       }
     }
     stage ("terraform init") {
@@ -33,7 +33,7 @@ pipeline {
     stage('Building Docker image') {
       steps{
         script {
-          dockerImage = docker.build("haneef7/Project:V1")
+          dockerImage = docker.build("pkcsmath/project1")
         }
       }
     }
@@ -60,7 +60,7 @@ pipeline {
         steps {
             emailext attachLog: true, body: '''Hello,
             Check your build status and build logs.
-            Thankyou.''', recipientProviders: [developers()], subject: 'Build Success or Failure?', to: 'khan.sharukh112@gmail.com'
+            Thankyou.''', recipientProviders: [developers()], subject: 'Build Success or Failure?', to: 'pkcsmath@gmail.com'
         }
     }
   }
