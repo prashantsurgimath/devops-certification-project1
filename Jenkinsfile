@@ -27,8 +27,8 @@ pipeline {
         }
         stage('Docker Push') {
             steps { 
-                withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
-                sh 'docker login -u cbabu85 -p Prashant@1989'
+                withCredentials([string(credentialsId: 'docker-hub', password: 'Prashant@1989')]) {
+                sh 'docker login -u cbabu85 -p ${Prashant@1989}'
                   }
                 sh 'docker push pkcsmath/project1'
                   }                                     
