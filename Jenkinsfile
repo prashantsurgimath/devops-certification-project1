@@ -26,17 +26,14 @@ pipeline {
             }
         }
         stage('Push Docker Image to Dockerhub') {
-      steps{
-        script {
-            withDockerRegistry([ credentialsId: "docker-hub", url: "https://registry.hub.docker.com" ]){
-                sh 'docker login -u cbabu85 -p ${Prashant@1989}'
-            }
+      steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
             {
             dockerImage.push()
             }
         }
-      }
-    }
+      
          stage('Terraform init') {
              steps {
                  sh 'terraform init'
