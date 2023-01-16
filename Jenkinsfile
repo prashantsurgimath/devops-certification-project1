@@ -1,64 +1,54 @@
 pipeline {
-  agent any
-  tools {
-    maven 'M2_HOME'
-  }
-  stages {
-    stage ('GetCode from SCM'){
-      steps{
-         git 'https://github.com/prashantsuragimath/devops-certification-project1.git'
-      }
+    agent any
+    
+    tools {
+        maven 'M2_HOME'
+        terraform 'Terraform-1.3.7'
     }
-    stage ("terraform init") {
-      steps{
-         sh ('terraform init -reconfigure') 
-      }
-    }
-    stage ("terraform plan") {
-      steps{
-         sh ('terraform plan') 
-      }
-    }            
-    stage ("terraform apply") {
-      steps{
-         echo "Terraform action"
-         sh ('terraform apply --auto-approve')
-      }
-    }
-    stage ('Build the package'){
-      steps{
-         sh 'mvn clean package'
-      }
-    }
-   stage('Docker Build') {
+    environment {
+        AWS_ACCESS_KEY_ID = 'AKIAR3EPJ2LQYBJEX535'
+        AWS_SECRET_KEY = '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'
+        }
+
+    stages {
+        stage('Checkout') {
+            steps {
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/prashantsuragimath/devops-certification-project1.git']]])
+            }
+        }
+        stage('Compile') {
+            steps {
+            sh 'mvn clean package'
+            }
+        }  
+        stage('Docker Build') {
             steps {
                 sh 'docker build -t pkcsmath/project1 .'
             }
         }
-   stage('Docker Push') {
+        stage('Docker Push') {
             steps { 
                 withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
-                sh 'docker login -u pkcsmath -p Prashant@1989'
+                sh 'docker login -u cbabu85 -p Prashant@1989'
                   }
                 sh 'docker push pkcsmath/project1'
                   }                                     
              }
-    stage(" Deploying app onto Test_server using Ansible") {
-        steps {
-            ansiblePlaybook credentialsId: 'Ansible-deploy', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'stage.inv', playbook: 'Docker-deploy-1.yml'
-        }    
-    }
-    stage(" Deploying app onto Prod_server using Ansible") {
-        steps {
-            ansiblePlaybook credentialsId: 'Ansible-deploy', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'prod.inv', playbook: 'Docker-deploy-2.yml'
-        }    
-    }
-    stage(" Email-Notify"){
-        steps {
-            emailext attachLog: true, body: '''Hello,
-            Check your build status and build logs.
-            Thankyou.''', recipientProviders: [developers()], subject: 'Build Success or Failure?', to: 'pkcsmath@gmail.com'
+         stage('Terraform init') {
+             steps {
+                 sh 'terraform init'
+             }
+         }
+         stage('Terraform Apply') {
+             steps {
+                 sh 'terraform apply --auto-approve'
+                 sleep 20
+             }
+         }
+        stage('Docker Deploy using Ansible') {
+             steps {
+                 ansiblePlaybook credentialsId: 'terraform-docker', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
+             }
         }
-    }
-  }
+     }
 }
