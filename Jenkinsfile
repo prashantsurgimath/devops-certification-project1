@@ -29,7 +29,7 @@ pipeline {
       steps{
         script {
             withDockerRegistry([ credentialsId: "docker-hub", url: "https://registry.hub.docker.com" ]){
-                sh 'docker login -u cbabu85 -p Prashant@1989'
+                sh 'docker login -u cbabu85 -p ${Prashant@1989}'
             }
             {
             dockerImage.push()
