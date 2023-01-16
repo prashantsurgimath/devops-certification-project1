@@ -1,3 +1,2 @@
-FROM tomcat:9
-MAINTAINER prashant
-COPY target/addressbook.war /usr/local/tomcat/webapps/addressbook.war
+FROM tomcat:8
+COPY target/*.war /usr/local/tomcat/webapps/addressbook.war
