@@ -30,7 +30,7 @@ pipeline {
                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                   }
         }
-        stage('Push) {
+        stage('Push') {
               steps {
               sh 'docker push pkcsmath/project1'
                   }    
