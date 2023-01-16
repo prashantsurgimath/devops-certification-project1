@@ -5,12 +5,12 @@ secret_key = "I4AP6BeU51GkrII0a0WlA3t35FaCKokLdgIjXaNe"
 }
 
 resource "aws_instance" "Test_Server" {
-    ami = var.ami_id
-    instance_type = var.instance_type
-    key_name= var.key_name
+    ami = "ami-0ef82eeba2c7a0eeb"
+    instance_type = "t2.micro"
+    key_name= "Terraform"
    user_data = file("docker.sh")
   tags= {
-    Name = var.tag_name
+    Name = "Test_Server"
  }
 }
 
