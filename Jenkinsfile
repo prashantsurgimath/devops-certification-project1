@@ -36,7 +36,7 @@ pipeline {
 				sh 'docker push pkcsmath/project1:latest'
 			}
 		}
-	}
+	
            
       
          stage('Terraform init') {
