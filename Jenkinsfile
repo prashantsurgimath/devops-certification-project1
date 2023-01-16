@@ -30,13 +30,11 @@ pipeline {
          sh 'mvn clean package'
       }
     }
-    stage('Building Docker image') {
-      steps{
-        script {
-          dockerImage = docker.build("pkcsmath/project1")
+   stage('Docker Build') {
+            steps {
+                sh 'docker build -t pkcsmath/project1 .'
+            }
         }
-      }
-    }
    stage('Docker Push') {
             steps { 
                 withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
