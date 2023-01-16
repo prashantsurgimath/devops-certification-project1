@@ -25,12 +25,17 @@ pipeline {
                 sh 'docker build -t pkcsmath/project1 .'
             }
         }
-        stage('Docker Push') {
+        stage('Docker login') {
             steps { 
                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                   }
-                sh 'docker push cbabu85/devopsaddressbook'
-                  }                                     
+        }
+        stage('Push) {
+              steps {
+              sh 'docker push pkcsmath/project1'
+                  }    
+              }
+              }
                  
               stage('Terraform init') {
              steps {
