@@ -10,7 +10,7 @@ resource "aws_instance" "Test_Server" {
     key_name= "Terraform"
    user_data = file("docker.sh")
   tags= {
-    Name = "Test_Server"
+    Name = "TestServer"
  }
 }
 
