@@ -29,10 +29,15 @@ pipeline {
       steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
-            {
-            dockerImage.push()
-            }
-        }
+	}
+	    stage('Push') {
+
+			steps {
+				sh 'docker push pkcsmath/project1:latest'
+			}
+		}
+	}
+           
       
          stage('Terraform init') {
              steps {
