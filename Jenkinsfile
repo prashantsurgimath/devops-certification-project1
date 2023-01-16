@@ -7,7 +7,7 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID = 'AKIAR3EPJ2LQYBJEX535'
         AWS_SECRET_KEY = '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'    
-        DOCKERHUB_CREDENTIALS= credentials('docker-hub')     
+        
 } 
 
     stages {
@@ -26,18 +26,16 @@ pipeline {
                 sh 'docker build -t pkcsmath/project1 .'
             }
         }
-        stage('Docker login') {
-            steps { 
-               sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                  }
+  
+        stage('Docker Push') {
+    	agent any
+      steps {
+      	withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+        	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+          sh 'docker push pkcsmath/project1'
         }
-        stage('Push') {
-              steps {
-              sh 'docker push pkcsmath/project1'
-                  }    
-              }
-              
-                 
+      }
+    }
               stage('Terraform init') {
              steps {
                  sh 'terraform init'
