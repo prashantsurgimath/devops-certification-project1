@@ -22,7 +22,7 @@ pipeline {
     stage ("terraform apply") {
       steps{
          echo "Terraform action"
-         sh ('terraform apply')
+         sh ('terraform apply --auto-approve')
       }
     }
     stage ('Build the package'){
