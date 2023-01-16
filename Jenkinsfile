@@ -25,16 +25,15 @@ pipeline {
                 sh 'docker build -t pkcsmath/project1 .'
             }
         }
-        stage('Docker Push') {
-            steps { 
-                script {
-                withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
-                sh 'docker login -u pkcsmath -p ${dockerHubPwd}'
-                  }
-                }
-                sh 'docker push pkcsmath/project1'
-                  }                                     
-             }
+        stage('Push Docker Image to Dockerhub') {
+      steps{
+        script {
+            withDockerRegistry([ credentialsId: "docker-hub", url: "https://registry.hub.docker.com" ]){
+            dockerImage.push()
+            }
+        }
+      }
+    }
          stage('Terraform init') {
              steps {
                  sh 'terraform init'
