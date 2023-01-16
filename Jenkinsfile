@@ -37,15 +37,14 @@ pipeline {
         }
       }
     }
-    stage('Push Docker Image to Dockerhub') {
-      steps{
-        script {
-            withDockerRegistry([ credentialsId: "dockerhub", url: "" ]){
-            dockerImage.push()
-            }
-        }
-      }
-    }
+   stage('Docker Push') {
+            steps { 
+                withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
+                sh 'docker login -u cbabu85 -p ${dockerHubPwd}'
+                  }
+                sh 'docker push pkcsmath/project1'
+                  }                                     
+             }
     stage(" Deploying app onto Test_server using Ansible") {
         steps {
             ansiblePlaybook credentialsId: 'Ansible-deploy', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'stage.inv', playbook: 'Docker-deploy-1.yml'
