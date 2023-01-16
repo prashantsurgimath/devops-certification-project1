@@ -3,7 +3,6 @@ pipeline {
     
     tools {
         maven 'M2_HOME'
-        terraform 'Terraform-1.3.7'
     }
     environment {
         AWS_ACCESS_KEY_ID = 'AKIAR3EPJ2LQYBJEX535'
