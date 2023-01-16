@@ -22,7 +22,7 @@ pipeline {
         }  
         stage('Docker Build') {
             steps {
-                sh 'sudo docker build -t pkcsmath/project1 .'
+                sh '-S docker build -t pkcsmath/project1 .'
             }
         }
         stage('Docker Push') {
