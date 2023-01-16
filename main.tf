@@ -1,7 +1,7 @@
 provider "aws" {
 region = var.aws_region
-access_key = "AKIAR3EPJ2LQ76PDUXHB"
-secret_key = "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"
+access_key = "AKIAR3EPJ2LQ3O2CF27G"
+secret_key = "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"
 }
 
 resource "aws_instance" "Test_Server" {
