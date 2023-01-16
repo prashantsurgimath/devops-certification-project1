@@ -7,7 +7,7 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID = 'AKIAR3EPJ2LQYBJEX535'
         AWS_SECRET_KEY = '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'    
-        DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')     
+        DOCKERHUB_CREDENTIALS= credentials('docker-hub')     
 } 
 
     stages {
