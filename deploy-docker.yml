@@ -1,35 +1,14 @@
 ---
 - hosts: dev
-  become: True
+  become: true
   tasks:
-    - name: install python pip
-      apt:
-        name: python-pip
-        state: present 
-    
-    - name: Install docker with python module
-      pip:
-        name: docker-py
-        state: present
-    
-    - name: Install docker
-      apt:
-        name: docker
-        state: present
-    
-    - name: start docker
-      service:
-        name: docker
-        state: started
-        enabled: yes
-    
-    - name: docker run user
-      shell: usermod -a -G docker ubuntu
-    
-    - name: Start the container
-      docker_container:
-        name: project-app
-        image: "pkcsmath/project1"
-        state: started
-        published_ports:
-          - 0.0.0.0:8090:8090
+  - name: create a container
+    command: docker run -itd --name project1 -p 8080:8080 pkcsmath/project1
+Footer
+© 2023 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
