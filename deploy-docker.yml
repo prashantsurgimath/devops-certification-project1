@@ -4,11 +4,4 @@
   tasks:
   - name: create a container
     command: docker run -itd --name project1 -p 8080:8080 pkcsmath/project1
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
+
