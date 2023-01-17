@@ -1,13 +1,13 @@
 provider "aws" {
-region = "ap-south-1"
-access_key = "AKIAR3EPJ2LQYBJEX535"
-secret_key = "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"
+region = "us-east-1"
+access_key = "AKIAUPFWGORO56CZCU7L"
+secret_key = "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"
 }
 
 resource "aws_instance" "ec2" {
-    ami = "ami-0ef82eeba2c7a0eeb"
+    ami = "ami-06878d265978313ca"
     instance_type = "t2.micro"
-    key_name= "Prashant"
+    key_name= "devops"
 }
 
 resource "aws_security_group" "main" {
