@@ -48,8 +48,8 @@ pipeline {
              }
          }
         stage('Docker Deploy using Ansible') {
-             steps {
-                 ansiblePlaybook credentialsId: 'terraform-docker', disableHostKeyChecking: true, installation: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
+            steps {
+           ansiblePlaybook credentialsId: 'ec2-user', installation: 'Ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
              }
         }
      }
