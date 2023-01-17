@@ -49,7 +49,7 @@ pipeline {
          }
         stage('Docker Deploy using Ansible') {
             steps {
-           ansiblePlaybook credentialsId: 'ec2-user', disableHostKeyChecking: 'true' , installation: 'Ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
+           ansiblePlaybook credentialsId: 'ec2-user', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
              }
         }
      }
