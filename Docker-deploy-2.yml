@@ -1,6 +1,0 @@
----
-- hosts: Prod_server
-  become: true
-  tasks:
-  - name: create a container
-    command: docker run -itd --name project -p 8090:8090 pkcsmath/project1
