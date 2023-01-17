@@ -4,7 +4,7 @@ access_key = "AKIAR3EPJ2LQYBJEX535"
 secret_key = "n7UexV6HYnFkI7zjKKwQzSIQQvydVbHu4icQGELJ"
 }
 
-resource "aws_instance" "ec2_example" {
+resource "aws_instance" "ec2" {
     ami = "ami-0ef82eeba2c7a0eeb"
     instance_type = "t2.micro"
     key_name= "Prashant"
