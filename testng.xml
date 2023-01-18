@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="TestSuite">
-    <test name="">
+    <test name="script">
         <classes>
-          <class name="com.      ></class>
+          <class name="com.selenium.script></class>
         </classes>
-   </test>
-                       </suite>
+    </test>
+</suite>
                        
                 
