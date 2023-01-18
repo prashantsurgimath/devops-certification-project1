@@ -23,7 +23,7 @@ pipeline {
         }  
         stage('Docker Build') {
             steps {
-                sh 'docker build -t pkcsmath/project1 .'
+                sh 'docker build -t pkcsmath/project2 .'
             }
         }
   
@@ -32,7 +32,7 @@ pipeline {
       steps {
       	withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
         	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          sh 'docker push pkcsmath/project1'
+          sh 'docker push pkcsmath/project2'
         }
       }
     }
